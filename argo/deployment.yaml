@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-app-deployment
+  labels:
+    app: go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-app
+  template:
+    metadata:
+      labels:
+        app: go-app
+    spec:
+      containers:
+      - name: go-app-deployment
+        image: ghcr.io/misteroryon/test_ci_cd/app:latest
+        resources:
+          requests:
+            cpu: "100m"
+        ports:
+        - containerPort: 8090
