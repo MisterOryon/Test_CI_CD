@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: teamcity-sensor
+  namespace: argo-events
+spec:
+  dependencies:
+    - name: teamcity-dep
+      eventSourceName: teamcity-event
+      eventName: example
+  triggers:
+    - template:
+        name: argo-rollout-trigger
+        k8s:
+          group: argoproj.io
+          version: v1alpha1
+          resource: rollouts
+          operation: patch
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Rollout
+              metadata:
+                name: go-app-rollout
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: go-app
+                        image: ghcr.io/misteroryon/test_ci_cd/app:latest
