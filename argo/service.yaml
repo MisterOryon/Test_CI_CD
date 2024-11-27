@@ -21,7 +21,6 @@ spec:
     app: teamcity-event
   type: NodePort
   ports:
-    - protocol: TCP
-      port: 12000
+    - port: 12000
       targetPort: 12000
       nodePort: 31234
