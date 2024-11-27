@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
   name: docker-registry
-  namespace: argo-events
+  namespace: default
 spec:
   docker:
     example:
