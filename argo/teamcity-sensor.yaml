@@ -2,10 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
   name: rollout-trigger-sensor
+  namespace: argo-events
 spec:
   dependencies:
     - name: docker-image-update
       eventSourceName: docker-registry
+      eventSourceNamespace: default
       eventName: example
   triggers:
     - template:
