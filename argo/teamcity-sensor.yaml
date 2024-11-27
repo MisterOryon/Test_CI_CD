@@ -7,7 +7,7 @@ spec:
   dependencies:
     - name: docker-image-update
       eventSourceName: docker-registry
-      eventSourceNamespace: default
+      eventSourceNamespace: argo-events
       eventName: example
   triggers:
     - template:
