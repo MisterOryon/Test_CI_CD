@@ -4,6 +4,8 @@ metadata:
   name: go-app-deployment
   labels:
     app: go-app
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/misteroryon/test_ci_cd/app
 spec:
   replicas: 1
   selector:
