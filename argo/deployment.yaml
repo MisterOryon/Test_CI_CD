@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: go-app-auto-update
   annotations:
-    argocd-image-updater.argoproj.io/image-list: app=ghcr.io/misteroryon/t>
+    argocd-image-updater.argoproj.io/image-list: app=ghcr.io/misteroryon/test_ci_cd/app:latest
     argocd-image-updater.argoproj.io/app.force-update: "true"
     argocd-image-updater.argoproj.io/app.update-strategy: latest
 ---
