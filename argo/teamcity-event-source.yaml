@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: docker-registry
+spec:
+  docker:
+    example:
+      eventType: push
+      interval: 10s
+      filter:
+        include:
+          - "ghcr.io/misteroryon/test_ci_cd/app:latest"
+      repository: "ghcr.io/misteroryon/test_ci_cd"
+      tag: "latest"
