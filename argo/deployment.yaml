@@ -1,13 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: go-app-auto-update
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: app=ghcr.io/misteroryon/t>
+    argocd-image-updater.argoproj.io/app.force-update: "true"
+    argocd-image-updater.argoproj.io/app.update-strategy: latest
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-app-deployment
   labels:
     app: go-app
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: app=ghcr.io/misteroryon/test_ci_cd/app:latest
-    argocd-image-updater.argoproj.io/app.force-update: "true"
-    argocd-image-updater.argoproj.io/app.update-strategy: latest
 spec:
   replicas: 1
   selector:
