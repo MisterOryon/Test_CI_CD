@@ -5,7 +5,7 @@ metadata:
   namespace: argo-events
 spec:
   dependencies:
-    - name: test-ci-cd-deployment
+    - name: go-app-deployment-event
       eventSourceName: webhook
       eventName: example
   triggers:
@@ -21,10 +21,16 @@ spec:
               apiVersion: apps/v1
               kind: Deployment
               metadata:
-                name: test-ci-cd
+                name: go-app-deployment
                 namespace: default
               spec:
+                selector:
+                  matchLabels:
+                    app: go-app
                 template:
+                  metadata:
+                    labels:
+                      app: go-app
                   spec:
                     containers:
                       - name: go-app-deployment
