@@ -25,4 +25,9 @@ spec:
                   spec:
                     containers:
                       - name: go-app-container
-                        image: ghcr.io/misteroryon/test_ci_cd/app:52
+                        image: ""
+          parameters:
+            - src:
+                dependencyName: go-app-deployment-event
+                dataKey: body.image
+              dest: spec.template.spec.containers.0.image
