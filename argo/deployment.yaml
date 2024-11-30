@@ -23,8 +23,3 @@ spec:
             memory: "128Mi"
         ports:
         - containerPort: 8090
-        strategy:
-          type: RollingUpdate
-          rollingUpdate:
-            maxUnavailable: 1
-            maxSurge: 1
