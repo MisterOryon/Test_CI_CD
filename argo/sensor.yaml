@@ -8,25 +8,18 @@ spec:
     - name: go-app-deployment-event
       eventSourceName: webhook
       eventName: example
-  triggers:
-    - template:
-        name: k8s-deployment-trigger
-        k8s:
-          group: apps
-          version: v1
-          resource: deployments
-          operation: patch
-          source:
-            resource:
-              apiVersion: apps/v1
-              kind: Deployment
-              metadata:
-                name: go-app-deployment
-                namespace: default
-              patch:
-                spec:
-                  template:
-                    spec:
-                      containers:
-                      - name: go-app-deployment
-                        image: ghcr.io/misteroryon/test_ci_cd/app:latest
+triggers:
+  - template:
+      name: rollout-trigger
+      k8s:
+        operation: update
+        source:
+          resource:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: go-app-deployment
+            spec:
+              template:
+                metadata:
+                  annotations:
+                    argo.rollouts.io/restartedAt: "{{ now }}"
