@@ -8,18 +8,18 @@ spec:
     - name: go-app-deployment-event
       eventSourceName: webhook
       eventName: example
-triggers:
-  - template:
-      name: rollout-trigger
-      k8s:
-        operation: update
-        source:
-          resource:
-            apiVersion: apps/v1
-            kind: Deployment
-            name: go-app-deployment
-            spec:
-              template:
-                metadata:
-                  annotations:
-                    argo.rollouts.io/restartedAt: "{{ now }}"
+  triggers:
+    - template:
+        name: rollout-trigger
+        k8s:
+          operation: update
+          source:
+            resource:
+              apiVersion: apps/v1
+              kind: Deployment
+              name: go-app-deployment
+              spec:
+                template:
+                  metadata:
+                    annotations:
+                      argo.rollouts.io/restartedAt: "{{ now }}"
