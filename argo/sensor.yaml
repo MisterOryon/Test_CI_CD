@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: redeploy-sensor
+  namespace: argo-events
+spec:
+  dependencies:
+    - name: test-ci-cd-deployment
+      eventSourceName: webhook
+      eventName: example
+  triggers:
+    - template:
+        name: k8s-deployment-trigger
+        k8s:
+          group: apps
+          version: v1
+          resource: deployments
+          operation: update
+          source:
+            resource:
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: test-ci-cd
+                namespace: default
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: go-app-deployment
+                        image: ghcr.io/misteroryon/test_ci_cd/app:latest
