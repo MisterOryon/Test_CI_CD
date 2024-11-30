@@ -24,9 +24,4 @@ spec:
                 template:
                   metadata:
                     annotations:
-                      redeploy-timestamp: ""
-          parameters:
-            - src:
-                dependencyName: go-app-deployment-event
-                dataKey: body.timestamp
-              dest: spec.template.metadata.annotations.redeploy-timestamp
+                      redeploy-timestamp: "{{`date`}}"
