@@ -12,7 +12,7 @@ spec:
     - template:
         name: rollout-trigger
         k8s:
-          operation: update
+          operation: patch
           source:
             resource:
               apiVersion: apps/v1
@@ -22,12 +22,11 @@ spec:
                 namespace: default
               spec:
                 template:
-                  spec:
-                    containers:
-                      - name: go-app-container
-                        image: ""
+                  metadata:
+                    annotations:
+                      redeploy-timestamp: ""
           parameters:
             - src:
                 dependencyName: go-app-deployment-event
-                dataKey: body.image
-              dest: spec.template.spec.containers.0.image
+                dataKey: body.timestamp
+              dest: spec.template.metadata.annotations.redeploy-timestamp
