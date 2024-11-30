@@ -9,6 +9,10 @@ spec:
   selector:
     matchLabels:
       app: go-app
+  strategy:
+    blueGreen:
+      activeService: go-app-active
+      previewService: go-app-preview
   template:
     metadata:
       labels:
