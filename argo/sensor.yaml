@@ -15,13 +15,14 @@ spec:
           operation: update
           source:
             resource:
-              apiVersion: apps/v1
-              kind: Deployment
+              apiVersion: argoproj.io/v1alpha1
+              kind: Rollout
               metadata:
                 name: go-app-deployment
                 namespace: default
               spec:
-                template:
-                  metadata:
-                    annotations:
-                      argo.rollouts.io/restartedAt: "{{ now }}"
+                 template:
+                  spec:
+                    containers:
+                      - name: go-app-deployment
+                        image: ghcr.io/misteroryon/test_ci_cd/app:latest

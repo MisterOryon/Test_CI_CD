@@ -17,6 +17,7 @@ spec:
       containers:
       - name: go-app-deployment
         image: ghcr.io/misteroryon/test_ci_cd/app:latest
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "100m"
