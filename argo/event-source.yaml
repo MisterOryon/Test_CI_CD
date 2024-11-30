@@ -5,6 +5,7 @@ metadata:
   namespace: argo-events
 spec:
   service:
+    type: NodePort
     ports:
       - port: 12000
         targetPort: 12000
