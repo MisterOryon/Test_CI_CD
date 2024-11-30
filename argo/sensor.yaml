@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
   name: redeploy-sensor
-  namespace: argo-events
 spec:
   dependencies:
     - name: go-app-deployment-event
@@ -19,7 +18,6 @@ spec:
               kind: Deployment
               metadata:
                 name: go-app-deployment
-                namespace: default
               spec:
                 template:
                   metadata:
