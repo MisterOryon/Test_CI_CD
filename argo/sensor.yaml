@@ -24,5 +24,5 @@ spec:
                 template:
                   spec:
                     containers:
-                      - name: go-app-deployment
+                      - name: go-app-container
                         image: ghcr.io/misteroryon/test_ci_cd/app:52
