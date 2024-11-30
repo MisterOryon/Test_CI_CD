@@ -8,9 +8,22 @@ spec:
     ports:
       - port: 12000
         targetPort: 12000
-        nodePort: 32010
-    type: NodePort
   webhook:
     example:
       endpoint: /example
       method: POST
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webhook-nodeport
+  namespace: argo-events
+spec:
+  type: NodePort
+  selector:
+    app: webhook
+  ports:
+    - protocol: TCP
+      port: 12000
+      targetPort: 12000
+      nodePort: 32000
