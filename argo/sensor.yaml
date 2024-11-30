@@ -17,7 +17,9 @@ spec:
             resource:
               apiVersion: apps/v1
               kind: Deployment
-              name: go-app-deployment
+              metadata:
+                name: go-app-deployment
+                namespace: default
               spec:
                 template:
                   metadata:
